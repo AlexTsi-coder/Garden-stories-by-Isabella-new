@@ -3718,6 +3718,14 @@ RESPONSIVE
                 min-width: 0;
             }
 
+            /* The Ephesis script is tall; at the desktop floor size the
+               title broke into four lines on phones. Shrink it so it reads
+               as a compact two-line statement. */
+            .hero-title {
+                font-size: clamp(42px, 12.5vw, 62px);
+                line-height: 1.05;
+            }
+
             /* The tagline is nowrap on desktop; let it wrap on phones
                instead of forcing the hero wider than the viewport */
             .hero-rule-text {
