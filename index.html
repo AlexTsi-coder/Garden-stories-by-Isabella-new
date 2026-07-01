@@ -198,11 +198,11 @@ RESET & ROOT
         html {
             scroll-behavior: smooth;
             scroll-padding-top: 68px;
-            /* Allow normal panning but disable pinch-zoom on touch browsers */
+            /* Allow normal panning but disable pinch-zoom on touch browsers.
+               NB: do NOT set overflow/clip here — it disables position:sticky
+               and breaks the stacking-card section effect. Horizontal overflow
+               is already contained by `body { overflow-x: hidden }`. */
             touch-action: pan-x pan-y;
-            /* Prevent any sideways scroll that would reveal the page
-               background as a strip beside the content */
-            overflow-x: clip;
         }
 
 
