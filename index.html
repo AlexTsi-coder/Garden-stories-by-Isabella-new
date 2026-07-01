@@ -6,7 +6,8 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="HandheldFriendly" content="true">
 
     <title>Garden Stories by Isabella — Wedding Floristry in Crete</title>
 
@@ -61,6 +62,35 @@
                 window.removeEventListener('touchmove', block);
                 window.removeEventListener('keydown', blockKeys);
             }, 2400);
+        })();
+
+        // ── Disable zoom ──
+        // iOS Safari ignores user-scalable=no in the viewport meta tag, which
+        // lets users pinch-zoom out and reveal the page background as an ugly
+        // strip on the side. Block the zoom gestures directly.
+        (function () {
+            // Pinch-zoom (Safari gesture events)
+            ['gesturestart', 'gesturechange', 'gestureend'].forEach(function (evt) {
+                document.addEventListener(evt, function (e) { e.preventDefault(); }, { passive: false });
+            });
+
+            // Pinch-zoom fallback (two-finger touch)
+            document.addEventListener('touchmove', function (e) {
+                if (e.touches && e.touches.length > 1) e.preventDefault();
+            }, { passive: false });
+
+            // Double-tap to zoom
+            var lastTouchEnd = 0;
+            document.addEventListener('touchend', function (e) {
+                var now = Date.now();
+                if (now - lastTouchEnd <= 300) e.preventDefault();
+                lastTouchEnd = now;
+            }, { passive: false });
+
+            // Ctrl/⌘ + wheel zoom (desktop)
+            window.addEventListener('wheel', function (e) {
+                if (e.ctrlKey) e.preventDefault();
+            }, { passive: false });
         })();
     </script>
 
@@ -168,6 +198,11 @@ RESET & ROOT
         html {
             scroll-behavior: smooth;
             scroll-padding-top: 68px;
+            /* Allow normal panning but disable pinch-zoom on touch browsers */
+            touch-action: pan-x pan-y;
+            /* Prevent any sideways scroll that would reveal the page
+               background as a strip beside the content */
+            overflow-x: clip;
         }
 
 
@@ -3678,6 +3713,19 @@ RESPONSIVE
 
             .hero-content {
                 padding: 0 28px 80px;
+                /* Keep the hero within the screen so nothing is cut off */
+                max-width: 100%;
+                min-width: 0;
+            }
+
+            /* The tagline is nowrap on desktop; let it wrap on phones
+               instead of forcing the hero wider than the viewport */
+            .hero-rule-text {
+                white-space: normal;
+            }
+
+            .hero-sub {
+                max-width: 100%;
             }
 
             .hero-scroll {
