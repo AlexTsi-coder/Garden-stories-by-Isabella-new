@@ -15,7 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=block"
+        href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=block"
         rel="stylesheet">
 
     <script>
@@ -157,26 +157,11 @@ RESET & ROOT
             --ink-lt: #7A8463;
             --off-white: #FFFFFF;
 
-            --display: 'Cormorant Garamond', Georgia, serif;
+            --display: 'Great Vibes', 'Snell Roundhand', cursive;
             --serif: 'Cormorant Garamond', Georgia, serif;
             --caps: 'Jost', sans-serif;
             --body: 'Jost', sans-serif;
         }
-
-        /* Display headings: Cormorant Garamond caps, matching the
-           elegant all-caps serif heading style (weddingsbymoments.com). */
-        .preloader-text,
-        .t-display,
-        .hero-title,
-        .section-title,
-        .founder-title,
-        .style-name,
-        .form-title {
-            text-transform: uppercase;
-            letter-spacing: 0.035em;
-            font-weight: 500;
-        }
-
 
 
         html {
@@ -2072,8 +2057,7 @@ CREDIBILITY BAR
 
         .founder-signature {
             font-family: var(--display);
-            font-style: italic;
-            font-size: 56px;
+            font-size: 72px;
             color: var(--rose);
             margin-top: 20px;
         }
@@ -4283,6 +4267,21 @@ RESPONSIVE
             .faq-acc-header { padding: 20px 16px; gap: 14px; }
             .faq-acc-q { font-size: 16px; }
             .faq-acc-a { padding: 4px 16px 22px 54px; font-size: 15.5px; }
+        }
+
+        /* 'Great Vibes' is a single-weight romantic script — force natural
+           weight and mixed-case so the display type stays elegant (no faux-bold
+           or uppercased script). Placed last so it overrides base heading rules. */
+        .preloader-text, .t-display, .nav-logo, .nav-logo em,
+        .mobile-menu-logo, .hero-title, .hero-title em, .section-title,
+        .section-title em, .founder-title, .founder-title em, .founder-signature,
+        .form-title, .footer-logo, .footer-logo em, .style-name, .style-num,
+        .cred-num, .p-item-label, .isabella-decorating-title,
+        .testi-open-quote, .quote-band blockquote {
+            font-weight: 400;
+            font-style: normal;
+            text-transform: none;
+            letter-spacing: normal;
         }
 
     </style>
